@@ -17,14 +17,13 @@ public class Main {
             } else if (exitCondition == '2') {
                 editUser();
             } else if (exitCondition == '3'){
-                viewUsers();
+                new HelperForUser().view();
             } else {
                 System.out.println("Invalid character. Please enter the character again from 1 to 4");
                 exitCondition = acceptAction();
                 continue;
             }
 
-            chooseExitCondition();
             showActions();
             exitCondition = acceptAction();
         }
@@ -38,22 +37,23 @@ public class Main {
         System.out.println("4. Exit.");
     }
 
-    public static void chooseExitCondition(){
-        String exitQuestion = "\"Do you want to continue? y/n (Yes/No)";
-        System.out.println(exitQuestion);
-        char exitCondition = '\u0000';
-        do{
-            exitCondition = acceptAction();
-            if (exitCondition == 'y') {
-                return;
-            } else if (exitCondition == 'n') {
-                System.exit(0);
-            } else {
-                System.out.println("Repeat input: " + exitQuestion);
-            }
-
-        } while (exitCondition != 'y' || exitCondition != 'n');
+    private static void showChanges(){
+        System.out.println("What do you want to change?");
+        System.out.println("1. Name");
+        System.out.println("2. Surname");
+        System.out.println("3. Email");
+        System.out.println("4. Roles");
+        System.out.println("5. Phones");
+        System.out.println("6. Delete user");
+        System.out.println("7. Back to actions");
     }
+
+    private static void showActionForRoles(){
+        System.out.println("What do you want to do?");
+        System.out.println("1. Add role");
+        System.out.println("2. Edit role");
+    }
+
 
     public static char acceptAction() {
         String input = in.next();
@@ -77,109 +77,22 @@ public class Main {
             System.out.println("There are no users. Create user");
             return;
         }
-        System.out.println("Select user to change.");
-        viewUsers();
-        System.out.println("Print 0 to back");
-        char selectUser = acceptAction();
-        tempBoolean = false;
-        while (!tempBoolean) {
-            if (Character.getNumericValue(selectUser) < 0 || Character.getNumericValue(selectUser) > users.size()) {
-                System.out.println("Wrong input try again");
-                viewUsers();
-                System.out.println("Print 0 to back");
-                selectUser = acceptAction();
-            } else {
-                tempBoolean = true;
-            }
-        }
-        if (selectUser == '0'){
-            return;
-        }
+
+        char selectUser = selectUserToChange();
         showChanges();
         char changeCondition = acceptAction();
         User user = users.get(Character.getNumericValue(selectUser) - 1);
         while(changeCondition!= '7') {
             if (changeCondition == '1') {
-                user.setName(enterName());
-                System.out.println("Name was changed successfully");
+                editName(user);
             } else if (changeCondition== '2') {
-                user.setSurname(enterSurname());
-                System.out.println("Surname was changed successfully");
+                editSurname(user);
             } else if (changeCondition == '3'){
-                user.setEmail(enterEmail());
-                System.out.println("Email was changed successfully");
+                editEmail(user);
             } else if (changeCondition == '4'){
-                showActionForRoles();
-                selectUser = acceptAction();
-                tempBoolean = false;
-                while(!tempBoolean){
-                    if(selectUser == '1'){
-                        if (user.getRoles().size() < 4){
-                            System.out.println("Print other role");
-                            user.getRoles().add(in.next());
-                        } else {
-                            System.out.println("There are already three roles");
-                        }
-                        tempBoolean = true;
-                    } else if (selectUser == '2'){
-                        viewRoles(user);
-                        System.out.println("Print 0 to back");
-                        selectUser = acceptAction();
-                        tempBoolean = false;
-                        while (!tempBoolean) {
-                            if (Character.getNumericValue(selectUser) < 0 || Character.getNumericValue(selectUser) > user.getRoles().size()) {
-                                System.out.println("Wrong input try again");
-                                viewRoles(user);
-                                System.out.println("Print 0 to back");
-                                selectUser = acceptAction();
-                            } else {
-                                tempBoolean = true;
-                            }
-                        }
-                        if (selectUser == '0'){
-                            return;
-                        }
-                        System.out.println("Print new role");
-                        user.getRoles().remove(Character.getNumericValue(selectUser) - 1);
-                        user.getRoles().add(Character.getNumericValue(selectUser) - 1, in.next());
-                        System.out.println("Role was changed successfully");
-                        tempBoolean = true;
-                    } else {
-                        System.out.println("Wrong input try again");
-                    }
-                }
+                editRoles(user);
             } else if (changeCondition == '5'){
-                viewPhones(user);
-                System.out.println("Print 0 to back");
-                selectUser = acceptAction();
-                in.nextLine();
-                tempBoolean = false;
-                while (!tempBoolean) {
-                    if (Character.getNumericValue(selectUser) < 0 || Character.getNumericValue(selectUser) > user.getMobilePhones().size()) {
-                        System.out.println("Wrong input try again");
-                        viewPhones(user);
-                        System.out.println("Print 0 to back");
-                        selectUser = acceptAction();
-                        in.nextLine();
-                    } else {
-                        tempBoolean = true;
-                    }
-                }
-                if (selectUser == '0'){
-                    return;
-                }
-                user.getMobilePhones().remove(Character.getNumericValue(selectUser) - 1);
-                System.out.println("Print new phone");
-                do {
-                    tempString = in.nextLine();
-                    tempBoolean = validator.isValidMobile(tempString);
-                    if (tempBoolean) {
-                        user.getMobilePhones().add(Character.getNumericValue(selectUser) - 1, tempString);
-                        System.out.println("Mobile phone was changed successfully");
-                    } else {
-                        System.out.println("Wrong mobile. Try again with this template 375** *******");
-                    }
-                } while(!tempBoolean);
+                editPhones(user);
             } else if (changeCondition == '6'){
                 users.remove(user);
             } else {
@@ -187,27 +100,10 @@ public class Main {
                 changeCondition = acceptAction();
                 continue;
             }
+            
             showChanges();
             changeCondition = acceptAction();
         }
-    }
-
-    public static void viewUsers(){
-        int count = 0;
-        for (User user: users) {
-            System.out.println((++count) + ". " + user.toString());
-        }
-    }
-
-    private static void showChanges(){
-        System.out.println("What do you want to change?");
-        System.out.println("1. Name");
-        System.out.println("2. Surname");
-        System.out.println("3. Email");
-        System.out.println("4. Roles");
-        System.out.println("5. Phones");
-        System.out.println("6. Delete user");
-        System.out.println("7. Back to actions");
     }
 
     private static String enterName(){
@@ -226,13 +122,14 @@ public class Main {
             tempString = in.next();
             tempBoolean = validator.isValidEmail(tempString);
             if (tempBoolean) {
-                return tempString;
+                break;
             } else {
                 System.out.println("Wrong email. Try again with this template *******@*****.***");
             }
 
         } while (!tempBoolean);
-        return null;
+
+        return tempString;
     }
 
     private static List<String> enterPhone(List<String> mobilePhones){
@@ -257,8 +154,7 @@ public class Main {
                     } else {
                         break;
                     }
-                }
-                else{
+                } else {
                     break;
                 }
             }
@@ -280,37 +176,110 @@ public class Main {
                 } else {
                     break;
                 }
-            }else{
+            } else {
                 break;
             }
         }
+
         in.nextLine();
         return roles;
     }
 
-    private static void viewRoles(User user){
-        System.out.println("What role do you want to change");
-        int count = 0;
-        for (String role : user.getRoles()){
-            System.out.println((++count) + ". " + role);
+    private static char selectUserToChange(){
+        System.out.println("Select user to change.");
+        tempBoolean = false;
+        char selectUser = helperInput(users, new HelperForUser());
+        return selectUser;
+    }
+
+    private static void editName(User user){
+        user.setName(enterName());
+        System.out.println("Name was changed successfully");
+    }
+
+    private static void editSurname(User user){
+        user.setSurname(enterSurname());
+        System.out.println("Surname was changed successfully");
+    }
+
+    private static void editEmail(User user){
+        user.setSurname(enterEmail());
+        System.out.println("Email was changed successfully");
+    }
+
+    private static void editRoles(User user){
+        showActionForRoles();
+        char selectUser = acceptAction();
+        tempBoolean = false;
+        while(!tempBoolean){
+            if(selectUser == '1'){
+                addRole(user);
+                tempBoolean = true;
+            } else if (selectUser == '2'){
+                editRole(user);
+                tempBoolean = true;
+            } else {
+                System.out.println("Wrong input try again");
+                showActionForRoles();
+                selectUser = acceptAction();
+            }
         }
     }
 
-    private static void viewPhones(User user){
-        System.out.println("What phone do you want to change");
-        int count = 0;
-        for (String phone : user.getMobilePhones()){
-            System.out.println((++count) + ". " + phone);
+    public static void editPhones(User user){
+        char selectUser = helperInput(user.getMobilePhones(), new HelperForPhones(user));
+        user.getMobilePhones().remove(Character.getNumericValue(selectUser) - 1);
+        System.out.println("Print new phone");
+        do {
+            tempString = in.nextLine();
+            tempBoolean = validator.isValidMobile(tempString);
+            if (tempBoolean) {
+                user.getMobilePhones().add(Character.getNumericValue(selectUser) - 1, tempString);
+                System.out.println("Mobile phone was changed successfully");
+            } else {
+                System.out.println("Wrong mobile. Try again with this template 375** *******");
+            }
+        } while(!tempBoolean);
+    }
+
+    private static void addRole(User user){
+        if (user.getRoles().size() < 4){
+            System.out.println("Print other role");
+            user.getRoles().add(in.next());
+        } else {
+            System.out.println("There are already three roles");
         }
     }
 
-    private static void showActionForRoles(){
-        System.out.println("What do you want to do?");
-        System.out.println("1. Add roles");
-        System.out.println("2. Edit roles");
+    private static void editRole(User user){
+        char selectUser = helperInput(user.getRoles(), new HelperForRoles(user));
+        System.out.println("Print new role");
+        user.getRoles().remove(Character.getNumericValue(selectUser) - 1);
+        user.getRoles().add(Character.getNumericValue(selectUser) - 1, in.next());
+        System.out.println("Role was changed successfully");
     }
 
-    private static void selectUserToChange(){
+    private static <T> char helperInput(List <T> list, View viewInt){
+        viewInt.view();
+        char selectUser = acceptAction();
+        if(viewInt instanceof HelperForPhones){
+            in.nextLine();
+        }
 
+        tempBoolean = false;
+        while (!tempBoolean) {
+            if (Character.getNumericValue(selectUser) < 0 || Character.getNumericValue(selectUser) > list.size()) {
+                System.out.println("Wrong input try again");
+                viewInt.view();
+                selectUser = acceptAction();
+                if(viewInt instanceof HelperForPhones){
+                    in.nextLine();
+                }
+            } else {
+                tempBoolean = true;
+            }
+        }
+
+        return selectUser;
     }
 }
