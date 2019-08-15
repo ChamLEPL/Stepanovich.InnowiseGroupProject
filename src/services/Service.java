@@ -10,9 +10,11 @@ import java.util.Scanner;
 
 public class Service {
     private Scanner in;
+    private Saver saver;
     private boolean tempBoolean;
 
     public Service(){
+        this.saver = new Saver();
         this.in = new Scanner(System.in);
         this.tempBoolean = false;
     }
@@ -55,5 +57,37 @@ public class Service {
         tempBoolean = false;
         char selectUser = helperInput(Main.users, new HelperForUser());
         return selectUser;
+    }
+
+    public void saveAndRewriteFile(){
+        ConsoleView.showSaveFileActions();
+        char exitCondition = acceptAction();
+        if (exitCondition == '1') {
+            ConsoleView.showRewriteFileActions();
+            exitCondition = acceptAction();
+            if (exitCondition == '1') {
+                saver.saveFile(false);
+            } else {
+                saver.saveFile(true);
+            }
+        }
+    }
+
+    public void reloadFile(){
+        if(Main.users.size() == 0){
+            saver.loadFile(true);
+        } else {
+            ConsoleView.showReloadUsersActions();
+            char exitCondition = acceptAction();
+            if (exitCondition == '1') {
+                saver.loadFile(true);
+            } else {
+                saver.loadFile(false);
+            }
+        }
+    }
+
+    public void clearFile(){
+        saver.clearFile();
     }
 }

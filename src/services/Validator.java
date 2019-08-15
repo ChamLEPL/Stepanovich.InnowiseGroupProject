@@ -1,11 +1,12 @@
 package services;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class Validator implements Serializable {
     public List<String> generateValidList(List<String> mobilePhones){
         List<String> validList = new ArrayList<>();
         for (String item : mobilePhones){

@@ -6,7 +6,10 @@ public class ConsoleView {
         System.out.println("1. Сreate user.");
         System.out.println("2. Edit user.");
         System.out.println("3. View users.");
-        System.out.println("4. Exit.");
+        System.out.println("4. Save users.");
+        System.out.println("5. Load users.");
+        System.out.println("6. Clear file for users.");
+        System.out.println("7. Exit.");
     }
 
     public static void showChanges(){
@@ -30,5 +33,25 @@ public class ConsoleView {
         System.out.println("What do you want to do?");
         System.out.println("1. Add phone");
         System.out.println("2. Edit phone");
+    }
+
+    public static void showSaveFileActions(){
+        System.out.println("Do you want to save users to a file?");
+        printYesOrNo();
+    }
+
+    public static void showRewriteFileActions(){
+        System.out.println("Want to rewrite the file?");
+        printYesOrNo();
+    }
+
+    public static void showReloadUsersActions(){
+        System.out.println("Do you want to add users from file to your users?");
+        printYesOrNo();
+    }
+
+    private static void printYesOrNo(){
+        System.out.println("1. Yes");
+        System.out.println("2. No");
     }
 }
