@@ -1,5 +1,6 @@
 package entities;
 
+import services.Validator;
 import java.util.List;
 
 public class User {

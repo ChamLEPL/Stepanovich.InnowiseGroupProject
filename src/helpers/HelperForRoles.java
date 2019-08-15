@@ -18,12 +18,4 @@ public class HelperForRoles implements View {
             System.out.println((++count) + ". " + role);
         }
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

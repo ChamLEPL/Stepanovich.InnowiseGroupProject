@@ -1,6 +1,9 @@
+package services;
+
 import helpers.HelperForPhones;
 import helpers.HelperForRoles;
 import entities.User;
+import pointOfEntry.Main;
 
 import java.util.Scanner;
 
@@ -23,7 +26,7 @@ public class Edit {
 
     public void editUser(){
         if(Main.users.size() == 0){
-            System.out.println("There are no users. Create user");
+            System.out.println("There are no users. services.Create user");
             return;
         }
 

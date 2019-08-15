@@ -1,5 +1,8 @@
+package helpers;
+
 import entities.User;
 import interfaces.View;
+import pointOfEntry.Main;
 
 public class HelperForUser implements View {
     @Override

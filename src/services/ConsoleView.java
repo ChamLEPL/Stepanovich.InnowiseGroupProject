@@ -1,9 +1,11 @@
+package services;
+
 public class ConsoleView {
     public static void showActions(){
         System.out.println("Select an action.");
         System.out.println("1. Сreate user.");
         System.out.println("2. Edit user.");
-        System.out.println("3. interfaces.View users.");
+        System.out.println("3. View users.");
         System.out.println("4. Exit.");
     }
 
