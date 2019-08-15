@@ -1,3 +1,6 @@
+import entities.User;
+import interfaces.View;
+
 public class HelperForUser implements View {
     @Override
     public void view() {
