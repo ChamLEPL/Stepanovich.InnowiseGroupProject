@@ -41,12 +41,13 @@ public class ConsoleView {
     }
 
     public static void showRewriteFileActions(){
-        System.out.println("Want to rewrite the file?");
+        System.out.println("Do you want save your users to users in a file?");
+        System.out.println("If No, the users in the file will be deleted and only your users will be added");
         printYesOrNo();
     }
 
     public static void showReloadUsersActions(){
-        System.out.println("Do you want to add users from file to your users?");
+        System.out.println("Do you want to add users from the file to your users?");
         printYesOrNo();
     }
 

@@ -29,7 +29,7 @@ public class Validator implements Serializable {
     }
 
     private Matcher generateRegexForEmail(String input){
-        Pattern patternForEmail = Pattern.compile("\\w{3,7}@\\w{5}.\\w{3}");
+        Pattern patternForEmail = Pattern.compile("\\w{3,7}@\\w{5}.\\w{2,3}");
         Matcher matcherForValidEmail = patternForEmail.matcher(input);
         return  matcherForValidEmail;
     }

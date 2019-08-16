@@ -36,7 +36,7 @@ public class Enter {
             if (tempBoolean) {
                 break;
             } else {
-                System.out.println("Wrong email. Try again with this template *******@*****.***");
+                System.out.println("Wrong email. Try again with this template (from 3 to 7 symbols)@(5 symbols).(from 2 to 3 symbols");
             }
 
         } while (!tempBoolean);

@@ -48,7 +48,7 @@ public class Edit {
             } else if (changeCondition == '6'){
                 Main.users.remove(user);
             } else {
-                System.out.println("Invalid character. Please enter the character again from 1 to 6");
+                System.out.println("Invalid character. Please enter the character again from 1 to 7");
                 changeCondition = service.acceptAction();
                 continue;
             }
@@ -69,7 +69,7 @@ public class Edit {
     }
 
     public void editEmail(User user){
-        user.setSurname(enter.enterEmail());
+        user.setEmail(enter.enterEmail());
         System.out.println("Email was changed successfully");
     }
 
