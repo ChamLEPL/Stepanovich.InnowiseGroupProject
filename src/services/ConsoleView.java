@@ -41,8 +41,9 @@ public class ConsoleView {
     }
 
     public static void showRewriteFileActions(){
-        System.out.println("Do you want save your users to users in a file?");
-        System.out.println("If No, the users in the file will be deleted and only your users will be added");
+        System.out.println("Do you want rewrite a file?");
+        System.out.println("If Yes, the users in the file will be deleted and only your users will be added");
+        System.out.println("If No, your users will be added to users in the file");
         printYesOrNo();
     }
 
