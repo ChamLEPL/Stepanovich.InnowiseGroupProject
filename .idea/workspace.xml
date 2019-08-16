@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5e78b4e-c36b-4458-bbfc-6e3b6d2f5fd7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Stepanovich.InnowiseGroupProject/pointOfEntry/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stepanovich.InnowiseGroupProject/pointOfEntry/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Stepanovich.InnowiseGroupProject/services/Edit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stepanovich.InnowiseGroupProject/services/Edit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ConsoleView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Edit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Enter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Enter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.dat" beforeDir="false" afterPath="$PROJECT_DIR$/user.dat" afterDir="false" />
-    </list>
+    <list default="true" id="d5e78b4e-c36b-4458-bbfc-6e3b6d2f5fd7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -269,12 +259,12 @@
       <workItem from="1565809447045" duration="2817000" />
       <workItem from="1565864387250" duration="7153000" />
       <workItem from="1565893704956" duration="9773000" />
-      <workItem from="1565948734246" duration="835000" />
+      <workItem from="1565948734246" duration="1332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66256000" />
+    <option name="totallyTimeSpent" value="66753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
